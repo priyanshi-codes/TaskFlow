@@ -2,8 +2,27 @@ services:
   - type: web
     name: taskflow-backend
     env: node
-    buildCommand: npm install
-    startCommand: node index.js
+    region: singapore # You can change this to your preferred region
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
     envVars:
       - key: NODE_ENV
         value: production
+      - key: MONGODB_URI
+        sync: false # You'll need to set this in Render dashboard
+      - key: JWT_SECRET
+        sync: false
+      - key: ADMIN_KEY
+        sync: false
+      - key: MAILTRAP_SMTP_HOST
+        sync: false
+      - key: MAILTRAP_SMTP_PORT
+        sync: false
+      - key: MAILTRAP_SMTP_USER
+        sync: false
+      - key: MAILTRAP_SMTP_PASS
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: APP_URL
+        sync: false # We'll update this after frontend deployment
