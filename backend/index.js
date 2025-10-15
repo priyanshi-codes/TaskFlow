@@ -16,7 +16,12 @@ const PORT = process.env.PORT || 3000
 const app = express()
 // Configure CORS
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'https://task-flow-frontend-ten.vercel.app/',
+  origin: function(origin, callback) {
+    // Allow any origin in development
+    callback(null, true);
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 app.use(express.json())
