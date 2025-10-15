@@ -7,7 +7,9 @@ import Tasks from "./pages/tasks.jsx"
 import LoginPage from "./pages/login.jsx"
 import SignupPage from "./pages/signup.jsx"
 import TaskDetailsPage from "./pages/task.jsx"
-import AdminPanel from './pages/admin.jsx'
+import AdminDashboard from './pages/admin-dashboard.jsx'
+import UserDashboard from './pages/user-dashboard.jsx'
+import LandingPage from './pages/landing.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -17,8 +19,30 @@ createRoot(document.getElementById('root')).render(
     <Route
        path = '/'
        element = {
+         <LandingPage />
+       }
+     />
+    <Route
+       path = '/dashboard'
+       element = {
          <CheckAuth protectedRoute={true}>
-           <Tasks/>
+           <UserDashboard />
+         </CheckAuth>
+       }
+     />
+    <Route
+       path = '/admin'
+       element = {
+         <CheckAuth protectedRoute={true}>
+           <AdminDashboard />
+         </CheckAuth>
+       }
+     />
+    <Route
+       path = '/tasks'
+       element = {
+         <CheckAuth protectedRoute={true}>
+           <UserDashboard />
          </CheckAuth>
        }
      />
@@ -54,15 +78,6 @@ createRoot(document.getElementById('root')).render(
          </CheckAuth>
        }
      />
-     <Route
-       path = '/admin'
-       element = {
-         <CheckAuth protectedRoute={true}>
-           <AdminPanel/>
-         </CheckAuth>
-       }
-     />
-     
    </Routes>
    </BrowserRouter>
   </StrictMode>,

@@ -28,7 +28,12 @@ export default function LoginPage() {
       if (res.ok) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        navigate("/");
+        // Navigate based on user role
+        if (data.user.role === 'admin') {
+          navigate("/admin");
+        } else {
+          navigate("/dashboard");
+        }
       } else {
         alert(data.error || data.message || "Login failed");
       }
